@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Circuits Lab Guide | ECE Department</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Using Inter for high readability and a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* 1. ACADEMIC THEME & HIGH CONTRAST COLORS (Deep Maroon) */
+        :root {
+            --primary-bg: #f7f7f7; /* Off-White/Mild Grey Background */
+            --accent: #800020; /* Professional Deep Maroon */
+            --text-dark: #1f2937; /* Charcoal */
+            --light-accent: #b34d4d; /* Milder Maroon for highlights */
+        }
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; 
+        }
+        .section-header {
+            border-left: 6px solid var(--accent);
+            padding-left: 1rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 800; 
+        }
+        h3 {
+            color: var(--light-accent);
+            font-weight: 700;
+        }
+        /* Scroll animation for smooth entry */
+        .animate-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .animate-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Table Styling for readability */
+        .experiment-table th {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .experiment-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .experiment-table tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        /* Logo Placeholder Style */
+        .logo-placeholder {
+            border: 2px dashed #fbb6c1; 
+            background-color: #fff0f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #800020;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-sm shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-700">
+                <span class="text-red-800">Digital</span> Circuits Lab
+            </div>
+        </div>
+    </header>
+
+    <!-- Cover Page Section -->
+    <section id="cover-page" class="relative min-h-screen flex items-center justify-center p-8 bg-white overflow-hidden">
+        <div class="relative z-10 text-center max-w-4xl px-4 animate-scroll visible">
+            
+            <div id="college-logo" class="logo-placeholder mx-auto w-full max-w-sm h-20 sm:h-24">
+                [IMAGE OPTION: Insert Rectangular College Header Logo]
+            </div>
+
+            <div id="lab-logo" class="logo-placeholder mx-auto w-48 h-16 sm:h-20 mb-10">
+                [IMAGE OPTION: Insert Rectangular Lab Logo]
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-gray-800 mb-4">
+                DIGITAL ELECTRONIC CIRCUITS LAB
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-600 mb-8">
+                Department of Electronics & Communication Engineering
+            </p>
+            <div class="bg-gray-100 border-l-4 border-red-500 rounded-xl p-6 inline-block shadow-lg">
+                <p class="text-lg font-semibold text-gray-700 mb-2">
+                    <span class="text-red-600">Course:</span> Electronic Digital Circuits Fundamental Lab
+                </p>
+                <p class="text-lg font-semibold text-gray-700">
+                    <span class="text-red-600">Lab In-Charge:</span> Ms. Dhoomal Mam
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Lab Overview and Layout -->
+    <section id="lab-overview" class="max-w-6xl mx-auto p-6 md:p-12 lg:p-16 mb-20">
+        <header class="mb-10 animate-scroll">
+            <h2 class="section-header text-3xl sm:text-4xl mb-4">
+                Introduction and Facility Overview
+            </h2>
+        </header>
+
+        <div class="space-y-12">
+            <!-- 1.1 Welcome Message & Purpose -->
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+                <h3 class="text-2xl font-semibold mb-3">Welcome and Purpose</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    Welcome! This lab is designed for hands-on experience, bridging the gap between digital logic theory and practical circuit implementation. Our goal is to provide a safe, structured environment to solidify your foundational understanding of digital electronics.
+                </p>
+            </div>
+
+            <!-- 1.2 Lab Layout & Infrastructure -->
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+                <h3 class="text-2xl font-semibold mb-3">Lab Layout</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    The lab is approximately **750 sq. ft.** (30 ft x 25 ft) and optimized for collaborative learning. The main area features **two giant workbenches** with ergonomic seating. The facility is well-ventilated, and two private staff cabins are strategically located for immediate guidance.
+                </p>
+                
+                <div class="mt-8 p-4 bg-red-50 border-2 border-red-200 rounded-lg">
+                    <h4 class="text-lg font-bold text-red-800 mb-2">Detailed Infrastructure Summary</h4>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                        <li>**Total Area:** ~750 sq. ft. (30 ft x 25 ft)</li>
+                        <li>**Main Equipment:** Two giant, centrally located workbenches.</li>
+                        <li>**Staff Facilities:** 2 private teaching staff cabins.</li>
+                        <li>**Environment:** Fully ventilated with ceiling fans.</li>
+                    </ul>
+                </div>
+                
+                <div class="mt-6 w-full">
+                    <div class="bg-gray-100 border-2 border-dashed border-red-500/50 rounded-lg p-6 h-48 flex items-center justify-center">
+                        <p class="text-red-600/80 font-mono text-center">
+                            [IMAGE OPTION: Lab Interior Diagram or Photo]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Lab Personnel and Profiles -->
+    <section id="personnel" class="max-w-6xl mx-auto p-6 md:p-12 lg:p-16 mb-20">
+        <header class="mb-10 animate-scroll">
+            <h2 class="section-header text-3xl sm:text-4xl mb-4">
+                Lab Personnel and Faculty
+            </h2>
+        </header>
+        
+        <!-- Ms. Dhoomal Mam Profile -->
+        <div class="bg-white rounded-2xl p-6 sm:p-10 shadow-xl border-l-8 border-red-800 animate-scroll">
+            <div class="flex flex-col sm:flex-row items-center sm:items-start space-y-6 sm:space-y-0 sm:space-x-8">
+                <div class="flex-shrink-0 w-36 h-36 sm:w-48 sm:h-48 rounded-full border-4 border-red-500 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <p class="text-red-600/80 font-mono text-center text-sm">
+                        [IMAGE OPTION: Ms. Dhoomal Mam's Profile Photo]
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-3xl font-bold mb-2">Ms. Dhoomal Mam (Lab In-Charge)</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Ms. Dhoomal Mam holds a Ph.D. in Digital Electronics and specializes in circuit analysis and systematic debugging. Her office is in the **Primary Staff Cabin**. She ensures expert instruction and is available during consultation hours for advanced academic and project assistance.
+                    </p>
+                    <p class="text-lg font-medium text-red-600 border-t border-gray-200 pt-3">
+                        **Location:** Primary Staff Cabin | **Email:** [Provide Email] | **Consultation:** [Provide Hours]
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Other Staff/Technician Placeholder -->
+        <div class="mt-10 animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+            <h3 class="text-2xl font-semibold mb-3">Supporting Personnel</h3>
+            <p class="text-gray-700 leading-relaxed">
+                The Lab Technician and Teaching Assistants (TAs) provide crucial technical and educational support. They are your first line of support for equipment setup, maintenance, and immediate procedural troubleshooting during lab sessions.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Section 3: Safety & Regulations -->
+    <section id="safety" class="max-w-6xl mx-auto p-6 md:p-12 lg:p-16 mb-20">
+        <header class="mb-10 animate-scroll">
+            <h2 class="section-header text-3xl sm:text-4xl mb-4">
+                Safety Rules and Emergency Procedures
+            </h2>
+            <p class="text-lg text-red-700 font-semibold">Strict adherence to safety guidelines is required for all personnel.</p>
+        </header>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-red-500 animate-scroll">
+                <h3 class="text-2xl font-semibold mb-3">General Safety Protocol</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                    <li>**Storage:** Store bags in designated areas to prevent tripping hazards.</li>
+                    <li>**No Food/Drink:** Absolutely no food or drinks are allowed on the workbenches.</li>
+                    <li>**Reporting:** Report faulty equipment, damaged cords, or any injury immediately to lab staff.</li>
+                    <li>**Tidiness:** Ensure your work area is clean and tidy before leaving.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-red-500 animate-scroll">
+                <h3 class="text-2xl font-semibold mb-3">Electrical Safety and Emergency</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                    <li>**Inspect Cords:** Always inspect power cords (CRO, DMM) for damage before use.</li>
+                    <li>**Check Polarity:** Double-check Vcc and GND polarity on all ICs before applying power (+5V DC).</li>
+                    <li>**Fire Extinguisher:** CO2 extinguisher (for electrical fires) is located at [Location].</li>
+                    <li>**First-Aid:** The First-Aid Kit is maintained in [Location].</li>
+                    <li>**Main Power:** The Main Power Switch is located at [Location] for emergencies.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section 4: Equipment Inventory -->
+    <section id="equipment" class="max-w-6xl mx-auto p-6 md:p-12 lg:p-16 mb-20">
+        <header class="mb-10 animate-scroll">
+            <h2 class="section-header text-3xl sm:text-4xl mb-4">
+                Equipment Inventory and Usage Guide
+            </h2>
+        </header>
+
+        <div class="space-y-12">
+            
+            <!-- The Core Workstation -->
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+                <h3 class="text-2xl font-semibold mb-3">Core Workstation Setup</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    Each station has a **Breadboard** for circuit assembly, a **DC Regulated Power Supply** (+5V for TTL ICs), **Connecting Wires**, and kits containing common **Digital ICs** (7400, 7404, 7476, etc.).
+                </p>
+
+                <div class="mt-8 p-4 bg-red-50 border-2 border-red-200 rounded-lg">
+                    <h4 class="text-lg font-bold text-red-800 mb-2">Primary Workstation Tool List</h4>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                        <li>**Breadboard:** Non-soldering circuit assembly platform.</li>
+                        <li>**DC Regulated Power Supply:** Provides stable +5V DC (TTL Standard).</li>
+                        <li>**Connecting Wires:** Complete set of jumper wires for connections.</li>
+                        <li>**Digital IC Kits:** Contains common TTL logic families (74XX series).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Key Measuring & Visualization Instruments -->
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+                <h3 class="text-2xl font-semibold mb-3">Key Measuring and Visualization Instruments</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    Accurate measurement is critical. You will use the **CRO** to visualize and measure digital waveforms and timing. The **Digital Multimeter (DMM)** is used for static voltage checks and continuity. The **Function Generator** provides stable clock signals (square waves) for sequential circuit testing.
+                </p>
+                
+                <div class="mt-8 p-4 bg-red-50 border-2 border-red-200 rounded-lg">
+                    <h4 class="text-lg font-bold text-red-800 mb-2">Essential Visualization and Measurement Tools</h4>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                        <li>**CRO (Cathode Ray Oscilloscope):** Observes and measures digital waveforms (timing, voltage).</li>
+                        <li>**Digital Multimeter (DMM):** Measures DC voltage and checks circuit continuity.</li>
+                        <li>**Function Generator:** Generates stable square waves (clock signals) for sequential testing.</li>
+                        <li>**Logic Analyzer:** (If available) Captures and displays multiple digital signals for complex debugging.</li>
+                    </ul>
+                </div>
+                
+                <div class="mt-6 w-full">
+                    <div class="bg-gray-100 border-2 border-dashed border-red-500/50 rounded-lg p-6 h-48 flex items-center justify-center">
+                        <p class="text-red-600/80 font-mono text-center">
+                            [IMAGE OPTION: CRO and Function Generator Setup]
+                        </p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 leading-relaxed mt-4">
+                    Specialized training tools, such as Experimental T.V.s, are reserved for advanced application experiments. Specific instruction on their use will be provided by staff.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Procedures and Experiments -->
+    <section id="procedures" class="max-w-6xl mx-auto p-6 md:p-12 lg:p-16 mb-20">
+        <header class="mb-10 animate-scroll">
+            <h2 class="section-header text-3xl sm:text-4xl mb-4">
+                Lab Procedures and Experiments
+            </h2>
+        </header>
+
+        <div class="space-y-12">
+            
+            <!-- Pre-Lab and In-Lab Workflow (Simplified) -->
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+                <h3 class="text-2xl font-semibold mb-3">In-Lab Workflow</h3>
+                <ol class="list-decimal list-inside text-gray-700 space-y-3 ml-4">
+                    <li>**Pre-Lab:** Read the procedure and complete all pre-lab calculations (Staff will check readiness).</li>
+                    <li>**Assembly:** Build your circuit neatly on the breadboard.</li>
+                    <li>**Power Check:** **MUST** get verification from staff before applying power.</li>
+                    <li>**Testing:** Verify circuit function using the CRO and DMM.</li>
+                    <li>**Troubleshooting:** Verify Power, Connections, and IC Orientation in that order if the circuit fails.</li>
+                    <li>**Post-Lab:** Turn off all equipment, disassemble the circuit, clean your station, and submit your report.</li>
+                </ol>
+            </div>
+
+            <!-- Experiment List Table (Kept clean and functional) -->
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+                <h3 class="text-2xl font-semibold mb-3">Experiment List (10 Practicals)</h3>
+                <p class="text-gray-700 leading-relaxed mb-6">
+                    The curriculum focuses on fundamental combinational and sequential logic circuits using TTL ICs.
+                </p>
+                
+                <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-md">
+                    <table class="w-full experiment-table text-sm text-left text-gray-700">
+                        <thead class="text-xs uppercase">
+                            <tr>
+                                <th scope="col" class="w-12 rounded-tl-lg">No.</th>
+                                <th scope="col" class="w-1/3">Experiment Title</th>
+                                <th scope="col" class="rounded-tr-lg">Objective</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td class="font-medium">Verification of Basic Logic Gates</td><td>To verify the truth tables of fundamental gates: AND, OR, and NOT.</td></tr>
+                            <tr><td>2</td><td class="font-medium">Universal Gates Implementation</td><td>To realize all basic logic operations using only NAND or NOR gates.</td></tr>
+                            <tr><td>3</td><td class="font-medium">Combinational Logic: Half/Full Adder</td><td>To design, construct, and verify the operation of Half Adder and Full Adder circuits.</td></tr>
+                            <tr><td>4</td><td class="font-medium">Combinational Logic: Half/Full Subtractor</td><td>To design, construct, and verify the operation of Half Subtractor and Full Subtractor circuits.</td></tr>
+                            <tr><td>5</td><td class="font-medium">Implementation of Multiplexer (MUX)</td><td>To implement and verify a 4:1 Multiplexer.</td></tr>
+                            <tr><td>6</td><td class="font-medium">Implementation of Demultiplexer (DEMUX)</td><td>To implement and verify a 1:4 Demultiplexer.</td></tr>
+                            <tr><td>7</td><td class="font-medium">Study of Flip-Flops</td><td>To construct and verify the characteristic tables of SR, D, and JK Flip-Flops.</td></tr>
+                            <tr><td>8</td><td class="font-medium">Asynchronous (Ripple) Counter Design</td><td>To design and implement a 4-bit Asynchronous Counter and observe the timing.</td></tr>
+                            <tr><td>9</td><td class="font-medium">Synchronous Counter Design</td><td>To design and implement a 4-bit Synchronous Up/Down Counter.</td></tr>
+                            <tr><td>10</td><td class="font-medium">Shift Register Implementation</td><td>To construct and verify the operation of a 4-bit Serial-In Parallel-Out (SIPO) Shift Register.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="w-full bg-gray-200 mt-12 py-8 text-center text-sm text-gray-600">
+        &copy; <span id="current-year"></span> ECE Department | Digital Electronic Circuits Fundamental Lab Guide
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        /**
+         * SCROLL ANIMATION LOGIC (IntersectionObserver)
+         * Triggers a smooth fade-in effect when elements enter the viewport.
+         */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Stop observing once visible
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Trigger animation when 5% of the element is visible
+            threshold: 0.05 
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Target all elements we want to animate on scroll (excluding the cover page, which is already visible)
+            document.querySelectorAll('.animate-scroll:not(#cover-page > div)').forEach(element => {
+                observer.observe(element);
+            });
+            // Ensure the cover page content is immediately visible
+            const coverContent = document.querySelector('#cover-page > div');
+            if (coverContent) {
+                coverContent.classList.add('visible');
+            }
+        });
+    </script>
+</body>
+</html>
