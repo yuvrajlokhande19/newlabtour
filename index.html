@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Circuits Lab Guide | ECE Department</title>
+    <title>Digital Circuit and Fundamental Measurement | ECE Department</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Using Inter for high readability and a clean, modern look -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Using Poppins for a clean, professional, and slightly unique look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* 1. ACADEMIC THEME & HIGH CONTRAST COLORS (Deep Maroon) */
+        /* 1. NEW GREY THEME & FONT */
         :root {
-            --primary-bg: #f7f7f7; /* Off-White/Mild Grey Background */
-            --accent: #800020; /* Professional Deep Maroon */
-            --text-dark: #1f2937; /* Charcoal */
-            --light-accent: #b34d4d; /* Milder Maroon for highlights */
+            --primary-bg: #F9FAFB; /* Very Light Grey */
+            --accent: #4B5563; /* Slate Grey (Dark) */
+            --text-dark: #1F2937; /* Charcoal */
+            --light-accent: #6B7280; /* Medium Grey for highlights */
         }
         body {
             background-color: var(--primary-bg);
             color: var(--text-dark);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden; 
         }
         .section-header {
@@ -33,19 +33,51 @@
             color: var(--light-accent);
             font-weight: 700;
         }
-        /* Scroll animation for smooth entry */
+
+        /* 2. Crazier Scroll Animation (Pop-Up/Elastic Effect) */
         .animate-scroll {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        transform 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Start slightly below, slightly scaled down, and slightly skewed */
+            transform: translateY(30px) scale(0.95) skewY(1deg); 
+            transition: opacity 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), /* Elastic effect for a 'pop' */
+                        transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         .animate-scroll.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1) skewY(0);
         }
 
-        /* Table Styling for readability */
+        /* 3. Startup Splash Screen Styling */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent);
+            color: white;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 1.5s ease-out, visibility 1.5s ease-out;
+        }
+        #splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .splash-logo {
+            font-size: 3rem;
+            font-weight: 900;
+            animation: pulse 1.5s infinite alternate;
+        }
+        @keyframes pulse {
+            from { transform: scale(0.9); opacity: 0.8; }
+            to { transform: scale(1.05); opacity: 1; }
+        }
+
+        /* Standard component styling */
         .experiment-table th {
             background-color: var(--accent);
             color: white;
@@ -59,15 +91,14 @@
         .experiment-table tr:nth-child(even) {
             background-color: #fcfcfc;
         }
-
-        /* Logo Placeholder Style */
+        
         .logo-placeholder {
-            border: 2px dashed #fbb6c1; 
-            background-color: #fff0f3;
+            border: 2px dashed #9ca3af; /* Light gray dash */
+            background-color: #F3F4F6;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #800020;
+            color: #4B5563;
             font-weight: 600;
             margin-bottom: 1rem;
             border-radius: 0.5rem;
@@ -76,11 +107,21 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- 4. Startup Splash Screen -->
+    <div id="splash-screen">
+        <div class="text-center">
+            <div class="splash-logo">
+                ECE Lab
+            </div>
+            <p class="text-xl font-light mt-2">Loading Circuits Guide...</p>
+        </div>
+    </div>
+
+    <!-- Header (Centered and New Text) -->
     <header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-sm shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-center items-center">
             <div class="text-2xl font-bold text-gray-700">
-                <span class="text-red-800">Digital</span> Circuits Lab
+                <span class="text-gray-600">Digital Circuit</span> and Fundamental Measurement
             </div>
         </div>
     </header>
@@ -89,30 +130,30 @@
     <section id="cover-page" class="relative min-h-screen flex items-center justify-center p-8 bg-white overflow-hidden">
         <div class="relative z-10 text-center max-w-4xl px-4 animate-scroll visible">
             
-            <!-- 1. College Logo -->
+            <!-- College Logo -->
             <div id="college-logo" class="logo-placeholder mx-auto w-full max-w-sm h-20 sm:h-24">
-                <img src="WhatsApp Image 2025-11-16 at 1.03.02 AM.jpeg" alt="College Logo" class="w-full h-full object-contain" 
+                <img src="images/college_logo.png" alt="College Logo" class="w-full h-full object-contain" 
                      onerror="this.onerror=null; this.src='https://placehold.co/400x100/cccccc/333333?text=College+Logo+Missing'">
             </div>
 
-            <!-- 2. Lab Logo -->
+            <!-- Lab Logo -->
             <div id="lab-logo" class="logo-placeholder mx-auto w-48 h-16 sm:h-20 mb-10">
-                <img src="pngtree-digital-circuit-board-technology-design-background-vector-png-image_14297521.png" alt="Lab Logo" class="w-full h-full object-contain" 
+                <img src="images/lab_logo.png" alt="Lab Logo" class="w-full h-full object-contain" 
                      onerror="this.onerror=null; this.src='https://placehold.co/200x80/cccccc/333333?text=Lab+Logo+Missing'">
             </div>
 
             <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-gray-800 mb-4">
-                DIGITAL CIRCUIT AND FUNDAMENTAL MEASURMENTS
+                DIGITAL ELECTRONIC CIRCUITS LAB
             </h1>
             <p class="text-xl sm:text-2xl text-gray-600 mb-8">
-                Department of Electronics & TeleCommunication Engineering
+                Department of Electronics & Communication Engineering
             </p>
-            <div class="bg-gray-100 border-l-4 border-red-500 rounded-xl p-6 inline-block shadow-lg">
+            <div class="bg-gray-100 border-l-4 border-gray-500 rounded-xl p-6 inline-block shadow-lg">
                 <p class="text-lg font-semibold text-gray-700 mb-2">
-                    <span class="text-red-600">Course:</span> Digital Circuit And Fundamental Measurments Lab
+                    <span class="text-gray-600">Course:</span> Electronic Digital Circuits Fundamental Lab
                 </p>
                 <p class="text-lg font-semibold text-gray-700">
-                    <span class="text-red-600">Lab In-Charge:</span> Mrs. V.M dhumal
+                    <span class="text-gray-600">Lab In-Charge:</span> Ms. Dhoomal Mam
                 </p>
             </div>
         </div>
@@ -128,47 +169,55 @@
 
         <div class="space-y-12">
             <!-- 1.1 Welcome Message & Purpose -->
-            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-300">
                 <h3 class="text-2xl font-semibold mb-3">Welcome and Purpose</h3>
                 <p class="text-gray-700 leading-relaxed">
-                    Welcome! This lab is designed for hands-on experience, bridging the gap between digital logic theory and practical circuit implementation. Our goal is to provide a safe, structured environment to solidify your foundational understanding of digital electronics.
+                    Welcome! This lab is designed for hands-on experience, bridging the gap between digital logic theory and practical circuit implementation. Our goal is to provide a safe, structured environment to solidify your foundational understanding of digital electronics. Always approach practicals with a detailed plan to maximize your time.
                 </p>
             </div>
 
             <!-- 1.2 Lab Layout & Infrastructure -->
-            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
-                <h3 class="text-2xl font-semibold mb-3">Lab Layout</h3>
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-300">
+                <h3 class="text-2xl font-semibold mb-3">Lab Layout and Workstations</h3>
                 <p class="text-gray-700 leading-relaxed">
                     The lab is approximately **750 sq. ft.** (30 ft x 25 ft) and optimized for collaborative learning. The main area features **two giant workbenches** with ergonomic seating. The facility is well-ventilated, and two private staff cabins are strategically located for immediate guidance.
                 </p>
                 
-                <div class="mt-8 p-4 bg-red-50 border-2 border-red-200 rounded-lg">
-                    <h4 class="text-lg font-bold text-red-800 mb-2">Detailed Infrastructure Summary</h4>
+                <div class="mt-8 p-4 bg-gray-50 border-2 border-gray-200 rounded-lg">
+                    <h4 class="text-lg font-bold text-gray-700 mb-2">Detailed Infrastructure Summary</h4>
                     <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
                         <li>**Total Area:** ~750 sq. ft. (30 ft x 25 ft)</li>
-                        <li>**Main Equipment:** Two giant, centrally located workbenches.</li>
-                        <li>**Staff Facilities:** 2 private teaching staff cabins.</li>
-                        <li>**Environment:** Fully ventilated with ceiling fans.</li>
+                        <li>**Workstations:** Dual central workbenches supporting 30 students simultaneously.</li>
+                        <li>**Staff Facilities:** 2 private teaching staff cabins for focused consultations.</li>
+                        <li>**Environment:** Fully ventilated; maintained at standard room temperature (25°C average).</li>
                     </ul>
                 </div>
                 
-                <!-- 3. Lab Interior -->
-                <div class="mt-6 w-full">
-                    <div class="bg-gray-100 border-2 border-dashed border-red-500/50 rounded-lg p-6 h-64">
-                        <img src="images/lab_interior.jpg" alt="Digital Circuits Lab Interior" class="w-full h-full object-cover rounded-lg" 
-                             onerror="this.onerror=null; this.src='https://placehold.co/800x256/cccccc/333333?text=Lab+Interior+Image+Missing'">
+                <div class="mt-6 grid sm:grid-cols-2 gap-6">
+                    <!-- Existing Lab Diagram -->
+                    <div class="w-full">
+                        <h4 class="text-lg font-semibold text-gray-600 mb-2">Full Lab Layout Diagram</h4>
+                        <div class="bg-gray-100 border-2 border-dashed border-gray-500/50 rounded-lg p-3 h-64">
+                            <img src="images/lab_diagram.png" alt="Lab Layout Diagram" class="w-full h-full object-contain rounded-lg" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/400x200/cccccc/333333?text=Lab+Diagram+Image+Missing'">
+                        </div>
+                    </div>
+
+                    <!-- NEW: Square Layout Detail Image -->
+                    <div class="w-full">
+                         <h4 class="text-lg font-semibold text-gray-600 mb-2">Individual Workstation Setup</h4>
+                        <div class="bg-gray-100 border-2 border-dashed border-gray-500/50 rounded-lg p-3 h-64">
+                            <img src="images/lab_layout_detail.jpg" alt="Close-up of a Workstation" class="w-full h-full object-contain rounded-lg" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/400x200/cccccc/333333?text=Workstation+Detail+Image+Missing'">
+                        </div>
                     </div>
                 </div>
 
-                <p class="text-gray-700 leading-relaxed mt-4">
-                    For clear navigation and safety awareness, please review the provided layout diagram which details the Entrance, Staff Cabins, Work Tables, Equipment Storage, Power Panel, and Emergency Exit points.
-                </p>
-
-                <!-- 4. Lab Diagram -->
                 <div class="mt-6 w-full">
-                    <div class="bg-gray-100 border-2 border-dashed border-red-500/50 rounded-lg p-6 h-64">
-                        <img src="images/lab_diagram.png" alt="Lab Layout Diagram" class="w-full h-full object-contain rounded-lg" 
-                             onerror="this.onerror=null; this.src='https://placehold.co/800x256/cccccc/333333?text=Lab+Diagram+Image+Missing'">
+                    <h4 class="text-lg font-semibold text-gray-600 mb-2">Photo Reference</h4>
+                    <div class="bg-gray-100 border-2 border-dashed border-gray-500/50 rounded-lg p-6 h-48">
+                        <img src="images/lab_interior.jpg" alt="Digital Circuits Lab Interior" class="w-full h-full object-cover rounded-lg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x160/cccccc/333333?text=Lab+Interior+Photo+Missing'">
                     </div>
                 </div>
             </div>
@@ -183,11 +232,11 @@
             </h2>
         </header>
         
-        <!-- Ms. Dhumal Mam Profile -->
-        <div class="bg-white rounded-2xl p-6 sm:p-10 shadow-xl border-l-8 border-red-800 animate-scroll">
+        <!-- Ms. Dhoomal Mam Profile -->
+        <div class="bg-white rounded-2xl p-6 sm:p-10 shadow-xl border-l-8 border-gray-800 animate-scroll">
             <div class="flex flex-col sm:flex-row items-center sm:items-start space-y-6 sm:space-y-0 sm:space-x-8">
-                <!-- 5. Ms. Dhumal Mam's Photo -->
-                <div class="flex-shrink-0 w-36 h-36 sm:w-48 sm:h-48 rounded-full border-4 border-red-500 overflow-hidden bg-gray-100">
+                <!-- Ms. Dhoomal Mam's Photo (Rectangular container) -->
+                <div class="flex-shrink-0 w-36 h-36 sm:w-48 sm:h-48 rounded-md border-4 border-gray-500 overflow-hidden bg-gray-100">
                     <img src="images/dhoomal_mam.jpg" alt="Ms. Dhoomal Mam" class="w-full h-full object-cover" 
                          onerror="this.onerror=null; this.src='https://placehold.co/192x192/cccccc/333333?text=Profile+Photo+Missing'">
                 </div>
@@ -197,40 +246,79 @@
                     <p class="text-gray-700 leading-relaxed mb-4">
                         Ms. Dhoomal Mam holds a Ph.D. in Digital Electronics and specializes in circuit analysis and systematic debugging. Her office is in the **Primary Staff Cabin**. She ensures expert instruction and is available during consultation hours for advanced academic and project assistance.
                     </p>
-                    <p class="text-lg font-medium text-red-600 border-t border-gray-200 pt-3">
+                    <p class="text-lg font-medium text-gray-600 border-t border-gray-200 pt-3">
                         **Location:** Primary Staff Cabin | **Email:** [Provide Email] | **Consultation:** [Provide Hours]
                     </p>
                 </div>
             </div>
         </div>
         
-        <!-- Other Staff/Technician Placeholder -->
-        <div class="mt-10 animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
-            <h3 class="text-2xl font-semibold mb-3">Supporting Personnel</h3>
-            <p class="text-gray-700 leading-relaxed">
-                The Lab Technician and Teaching Assistants (TAs) provide crucial technical and educational support. They are your first line of support for equipment setup, maintenance, and immediate procedural troubleshooting during lab sessions.
-            </p>
-            <!-- 6. Supporting Personnel Photo -->
-            <div class="bg-gray-100 border-2 border-dashed border-gray-400 rounded-lg p-6 h-40 mt-4">
-                <img src="images/support_staff.jpg" alt="Lab Technician and TAs" class="w-full h-full object-cover rounded-lg" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/800x160/cccccc/333333?text=Staff+Photo+Missing'">
+        <!-- Supporting Personnel (Circle Image Added) -->
+        <div class="mt-10 animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-300">
+            <h3 class="text-2xl font-semibold mb-3">Supporting Personnel (Technician & TAs)</h3>
+            
+            <div class="flex items-center space-x-6 mt-4">
+                <!-- Supporting Personnel Photo (Circle container) -->
+                <div class="flex-shrink-0 w-24 h-24 rounded-full border-4 border-gray-400 overflow-hidden bg-gray-200">
+                    <img src="images/support_staff.jpg" alt="Lab Technician and TAs" class="w-full h-full object-cover" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/333333?text=TA+Photo'">
+                </div>
+                <p class="text-gray-700 leading-relaxed flex-grow">
+                    The Lab Technician and Teaching Assistants (TAs) provide crucial technical and educational support. They are your first line of support for equipment setup, maintenance, and immediate procedural troubleshooting during lab sessions. Their direct assistance is vital for quickly resolving common wiring and power issues.
+                </p>
             </div>
         </div>
     </section>
+    
+    <!-- NEW SECTION: IC Handling and Common Families -->
+    <section id="ic-handling" class="max-w-6xl mx-auto p-6 md:p-12 lg:p-16 mb-20">
+        <header class="mb-10 animate-scroll">
+            <h2 class="section-header text-3xl sm:text-4xl mb-4">
+                Critical IC Handling & Common Families
+            </h2>
+        </header>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-gray-500 animate-scroll">
+                <h3 class="text-2xl font-semibold mb-3">IC Handling Guidelines (ESD Prevention)</h3>
+                <p class="text-sm font-semibold text-gray-600 mb-3">These rules prevent damage due to electrostatic discharge (ESD) and improper handling.</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 text-base">
+                    <li>**Check Pin Count:** Always count the pins and orient the IC (Notch/Dot) correctly before insertion.</li>
+                    <li>**Use IC Extractor:** Use the provided extractor tool; never pull ICs out with bare hands or pliers.</li>
+                    <li>**Power Down:** Always insert or remove ICs only when the DC Power Supply is completely OFF.</li>
+                    <li>**Verify Data Sheets:** Cross-reference the pin configuration and voltage requirements (Vcc/GND) before wiring.</li>
+                </ul>
+            </div>
 
-
+            <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-gray-500 animate-scroll">
+                <h3 class="text-2xl font-semibold mb-3">Common TTL IC Families (74XX Series)</h3>
+                <p class="text-sm font-semibold text-gray-600 mb-3">These are the standard ICs used in most fundamental experiments.</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 text-base">
+                    <li>**7400:** Quad 2-input NAND gates (Universal Gate).</li>
+                    <li>**7404:** Hex Inverter (NOT gates).</li>
+                    <li>**7408:** Quad 2-input AND gates.</li>
+                    <li>**7432:** Quad 2-input OR gates.</li>
+                    <li>**7476:** Dual JK Master-Slave Flip-Flop (Sequential Logic).</li>
+                    <li>**7485:** 4-bit Magnitude Comparator.</li>
+                    <li>**74151:** 8-to-1 Line Data Selector/Multiplexer (MUX).</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
     <!-- Section 3: Safety & Regulations -->
     <section id="safety" class="max-w-6xl mx-auto p-6 md:p-12 lg:p-16 mb-20">
         <header class="mb-10 animate-scroll">
             <h2 class="section-header text-3xl sm:text-4xl mb-4">
                 Safety Rules and Emergency Procedures
             </h2>
-            <p class="text-lg text-red-700 font-semibold">Strict adherence to safety guidelines is required for all personnel.</p>
+            <p class="text-lg text-gray-700 font-semibold">Strict adherence to safety guidelines is required for all personnel.</p>
         </header>
 
         <div class="grid md:grid-cols-2 gap-8">
             
-            <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-red-500 animate-scroll">
+            <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-gray-500 animate-scroll">
                 <h3 class="text-2xl font-semibold mb-3">General Safety Protocol</h3>
                 <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
                     <li>**Storage:** Store bags in designated areas to prevent tripping hazards.</li>
@@ -240,7 +328,7 @@
                 </ul>
             </div>
 
-            <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-red-500 animate-scroll">
+            <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-gray-500 animate-scroll">
                 <h3 class="text-2xl font-semibold mb-3">Electrical Safety and Emergency</h3>
                 <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
                     <li>**Inspect Cords:** Always inspect power cords (CRO, DMM) for damage before use.</li>
@@ -265,17 +353,17 @@
         <div class="space-y-12">
             
             <!-- The Core Workstation -->
-            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-300">
                 <h3 class="text-2xl font-semibold mb-3">Core Workstation Setup</h3>
                 <p class="text-gray-700 leading-relaxed">
                     Each station has a **Breadboard** for circuit assembly, a **DC Regulated Power Supply** (+5V for TTL ICs), **Connecting Wires**, and kits containing common **Digital ICs** (7400, 7404, 7476, etc.).
                 </p>
 
-                <div class="mt-8 p-4 bg-red-50 border-2 border-red-200 rounded-lg">
-                    <h4 class="text-lg font-bold text-red-800 mb-2">Primary Workstation Tool List</h4>
+                <div class="mt-8 p-4 bg-gray-50 border-2 border-gray-200 rounded-lg">
+                    <h4 class="text-lg font-bold text-gray-700 mb-2">Primary Workstation Tool List</h4>
                     <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
                         <li>**Breadboard:** Non-soldering circuit assembly platform.</li>
-                        <li>**DC Regulated Power Supply:** Provides stable +5V DC (TTL Standard).</li>
+                        <li>**DC Regulated Power Supply:** Provides stable +5V DC (TTL Standard). **Never exceed 5V for TTL circuits.**</li>
                         <li>**Connecting Wires:** Complete set of jumper wires for connections.</li>
                         <li>**Digital IC Kits:** Contains common TTL logic families (74XX series).</li>
                     </ul>
@@ -283,33 +371,29 @@
             </div>
 
             <!-- Key Measuring & Visualization Instruments -->
-            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-300">
                 <h3 class="text-2xl font-semibold mb-3">Key Measuring and Visualization Instruments</h3>
                 <p class="text-gray-700 leading-relaxed">
                     Accurate measurement is critical. You will use the **CRO** to visualize and measure digital waveforms and timing. The **Digital Multimeter (DMM)** is used for static voltage checks and continuity. The **Function Generator** provides stable clock signals (square waves) for sequential circuit testing.
                 </p>
                 
-                <div class="mt-8 p-4 bg-red-50 border-2 border-red-200 rounded-lg">
-                    <h4 class="text-lg font-bold text-red-800 mb-2">Essential Visualization and Measurement Tools</h4>
+                <div class="mt-8 p-4 bg-gray-50 border-2 border-gray-200 rounded-lg">
+                    <h4 class="text-lg font-bold text-gray-700 mb-2">Essential Visualization and Measurement Tools</h4>
                     <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
-                        <li>**CRO (Cathode Ray Oscilloscope):** Observes and measures digital waveforms (timing, voltage).</li>
-                        <li>**Digital Multimeter (DMM):** Measures DC voltage and checks circuit continuity.</li>
+                        <li>**CRO (Cathode Ray Oscilloscope):** Observes and measures digital waveforms (timing, voltage, frequency).</li>
+                        <li>**Digital Multimeter (DMM):** Measures DC voltage, current, and checks circuit continuity.</li>
                         <li>**Function Generator:** Generates stable square waves (clock signals) for sequential testing.</li>
                         <li>**Logic Analyzer:** (If available) Captures and displays multiple digital signals for complex debugging.</li>
                     </ul>
                 </div>
                 
-                <!-- 7. CRO and Function Generator -->
+                <!-- CRO and Function Generator -->
                 <div class="mt-6 w-full">
-                    <div class="bg-gray-100 border-2 border-dashed border-red-500/50 rounded-lg p-6 h-48">
+                    <div class="bg-gray-100 border-2 border-dashed border-gray-500/50 rounded-lg p-6 h-48">
                         <img src="images/equipment_setup.jpg" alt="CRO and Function Generator Setup" class="w-full h-full object-contain rounded-lg" 
                              onerror="this.onerror=null; this.src='https://placehold.co/800x192/cccccc/333333?text=Equipment+Image+Missing'">
                     </div>
                 </div>
-                
-                <p class="text-gray-700 leading-relaxed mt-4">
-                    Specialized training tools, such as Experimental T.V.s, are reserved for advanced application experiments. Specific instruction on their use will be provided by staff.
-                </p>
             </div>
         </div>
     </section>
@@ -325,20 +409,20 @@
         <div class="space-y-12">
             
             <!-- Pre-Lab and In-Lab Workflow (Simplified) -->
-            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
-                <h3 class="text-2xl font-semibold mb-3">In-Lab Workflow</h3>
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-300">
+                <h3 class="text-2xl font-semibold mb-3">In-Lab Workflow Checklist</h3>
                 <ol class="list-decimal list-inside text-gray-700 space-y-3 ml-4">
                     <li>**Pre-Lab:** Read the procedure and complete all pre-lab calculations (Staff will check readiness).</li>
-                    <li>**Assembly:** Build your circuit neatly on the breadboard.</li>
-                    <li>**Power Check:** **MUST** get verification from staff before applying power.</li>
-                    <li>**Testing:** Verify circuit function using the CRO and DMM.</li>
-                    <li>**Troubleshooting:** Verify Power, Connections, and IC Orientation in that order if the circuit fails.</li>
+                    <li>**Assembly:** Build your circuit neatly on the breadboard, optimizing for shortest wire lengths.</li>
+                    <li>**Power Check:** **MUST** get verification from staff before applying power (Vcc and GND check).</li>
+                    <li>**Testing:** Verify circuit function using the CRO and DMM. Record observations immediately.</li>
+                    <li>**Troubleshooting:** Verify **Power (voltage)**, **Connections (continuity)**, and **IC Orientation (notch)** in that order if the circuit fails.</li>
                     <li>**Post-Lab:** Turn off all equipment, disassemble the circuit, clean your station, and submit your report.</li>
                 </ol>
             </div>
 
             <!-- Experiment List Table (Kept clean and functional) -->
-            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-300">
+            <div class="animate-scroll bg-white p-6 rounded-xl shadow-lg border-l-4 border-gray-300">
                 <h3 class="text-2xl font-semibold mb-3">Experiment List (10 Practicals)</h3>
                 <p class="text-gray-700 leading-relaxed mb-6">
                     The curriculum focuses on fundamental combinational and sequential logic circuits using TTL ICs.
@@ -380,24 +464,38 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
         /**
-         * SCROLL ANIMATION LOGIC (IntersectionObserver)
-         * Triggers a smooth fade-in effect when elements enter the viewport.
+         * SPLASH SCREEN LOGIC
+         * Fades out the splash screen after content is loaded.
          */
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Stop observing once visible
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            // Trigger animation when 5% of the element is visible
-            threshold: 0.05 
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash-screen');
+            setTimeout(() => {
+                splash.classList.add('hidden');
+                // Initiate scroll animations only after splash screen is gone
+                initScrollObserver();
+            }, 1000); // Wait 1 second before fading out
         });
 
-        document.addEventListener("DOMContentLoaded", () => {
-            // Target all elements we want to animate on scroll (excluding the cover page, which is already visible)
+
+        /**
+         * SCROLL ANIMATION LOGIC (IntersectionObserver)
+         * Triggers a smooth pop-up/elastic effect when elements enter the viewport.
+         */
+        function initScrollObserver() {
+             const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Stop observing once visible
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                // Trigger animation when 5% of the element is visible
+                threshold: 0.05 
+            });
+
+            // Target all elements we want to animate on scroll (excluding the cover page, which is immediately visible)
             document.querySelectorAll('.animate-scroll:not(#cover-page > div)').forEach(element => {
                 observer.observe(element);
             });
@@ -406,7 +504,12 @@
             if (coverContent) {
                 coverContent.classList.add('visible');
             }
-        });
+        }
+        
+        // If the window loads immediately (e.g., cached), ensure the observer runs
+        if (document.readyState === 'complete') {
+            initScrollObserver();
+        }
     </script>
 </body>
 </html>
